@@ -1,20 +1,19 @@
 import { useState } from "react";
 
 const AddItem = ({ onAdd }) => {
-  const [oznaka, setOznaka] = useState("");
-  const [naziv, setNaziv] = useState("");
+  const [oznakaPS, setOznaka] = useState("");
+  const [nazivNV, setNaziv] = useState("");
   const [region, setRegion] = useState("");
   const [mail, setMail] = useState("");
-
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (!oznaka) {
+    if (!oznakaPS) {
       alert("Please add a task");
       return;
     }
 
-    onAdd({ oznaka, naziv, region, mail });
+    onAdd({ oznakaPS, nazivNV, region, mail });
 
     setOznaka("");
     setNaziv("");
@@ -23,37 +22,41 @@ const AddItem = ({ onAdd }) => {
   };
 
   return (
-    <form className="container w-25 text-center">
-      <div className="form-control d-flex justify-content-between align-items-center my-2">
-        <label>Dodaj oznaku: </label>
+    <form className="form-control container w-25 text-start my-5 ">
+      <div className=" d-flex justify-content-between align-items-center my-2">
+        <label className="w-50">Dodaj oznaku: </label>
         <input
+          className="form-control"
           type="text"
           placeholder="Dodaj oznaku"
-          value={oznaka}
+          value={oznakaPS}
           onChange={(e) => setOznaka(e.target.value)}
         />
       </div>
-      <div className="form-control d-flex justify-content-between align-items-center  my-2">
-        <label>Dodaj naziv: </label>
+      <div className=" d-flex justify-content-between align-items-center  my-2">
+        <label className="w-50">Dodaj naziv: </label>
         <input
+          className="form-control"
           type="text"
           placeholder="Dodaj naziv"
-          value={naziv}
+          value={nazivNV}
           onChange={(e) => setNaziv(e.target.value)}
         />
       </div>
-      <div className="form-control d-flex justify-content-between align-items-center  my-2">
-        <label>Dodaj region: </label>
+      <div className=" d-flex justify-content-between align-items-center  my-2">
+        <label className="w-50">Dodaj region: </label>
         <input
+          className="form-control"
           type="text"
           placeholder="Dodaj region"
           value={region}
           onChange={(e) => setRegion(e.target.value)}
         />
       </div>
-      <div className="form-control d-flex justify-content-between align-items-center  my-2">
-        <label>Dodaj mail: </label>
+      <div className=" d-flex justify-content-between align-items-center  my-2">
+        <label className="w-50">Dodaj mail: </label>
         <input
+          className="form-control"
           type="mail"
           placeholder="Dodaj mail"
           value={mail}
@@ -61,7 +64,14 @@ const AddItem = ({ onAdd }) => {
         />
       </div>
 
-      <input type="button" value="Save" onClick={onSubmit} className="px-5" />
+      <button
+        type="button"
+        value="Save"
+        onClick={onSubmit}
+        className="px-5 my-3 btn btn-danger"
+      >
+        Save
+      </button>
     </form>
   );
 };
