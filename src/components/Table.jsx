@@ -1,10 +1,22 @@
 import React, { useState } from "react";
-import { FiDelete } from "react-icons/fi";
-import { GrUpdate } from "react-icons/gr";
+
 import TableFooter from "./TableFooter";
 import useTable from "../hooks/useTable";
+import TableRow from "./TableRow";
+import EditItem from "./EditItem";
 
-const Table = ({ data, onDelete, onUpdate, onAdd, rowsPerPage }) => {
+const Table = ({
+  data,
+  onDelete,
+  onAdd,
+  rowsPerPage,
+  editItem,
+  editItemData,
+  editFormChange,
+  onUpdate,
+  editFormSubmit,
+  onCancelClick,
+}) => {
   const [value, setValue] = useState("");
   const [page, setPage] = useState(1);
   const { slice, range } = useTable(data, page, rowsPerPage);
@@ -21,9 +33,10 @@ const Table = ({ data, onDelete, onUpdate, onAdd, rowsPerPage }) => {
         />
 
         <button className="px-5 my-3 btn btn-danger" onClick={onAdd}>
-          Add Item
+          Dodaj podatak
         </button>
       </div>
+
       <table className="table table-hover table-striped my-5">
         <thead>
           <tr>
@@ -48,30 +61,23 @@ const Table = ({ data, onDelete, onUpdate, onAdd, rowsPerPage }) => {
             })
             .map((el) => {
               return (
-                <tr key={el.id}>
-                  <td>{el.oznakaPS}</td>
-                  <td>{el.nazivNV}</td>
-                  <td>{el.region}</td>
-                  <td>{el.mail}</td>
-                  <td>
-                    <FiDelete
-                      onClick={() => {
-                        onDelete(el);
-                      }}
+                <>
+                  {editItem === el.id ? (
+                    <EditItem
+                      editItemData={editItemData}
+                      editFormChange={editFormChange}
+                      editFormSubmit={editFormSubmit}
+                      onCancelClick={onCancelClick}
                     />
-                  </td>
-                  <td>
-                    <GrUpdate
-                      onClick={() => {
-                        onUpdate(el);
-                      }}
-                    />
-                  </td>
-                </tr>
+                  ) : (
+                    <TableRow el={el} onDelete={onDelete} onUpdate={onUpdate} />
+                  )}
+                </>
               );
             })}
         </tbody>
       </table>
+
       <TableFooter range={range} slice={slice} setPage={setPage} page={page} />
     </div>
   );

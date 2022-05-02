@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 const AddItem = ({ onAdd }) => {
   const [oznakaPS, setOznaka] = useState("");
@@ -8,8 +8,8 @@ const AddItem = ({ onAdd }) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (!oznakaPS) {
-      alert("Please add a task");
+    if (!oznakaPS || !nazivNV || !region || !mail) {
+      alert("Molimo Vas unesite potrebne podatke");
       return;
     }
 
@@ -20,7 +20,6 @@ const AddItem = ({ onAdd }) => {
     setRegion("");
     setMail("");
   };
-
   return (
     <form className="form-control container w-25 text-start my-5 ">
       <div className=" d-flex justify-content-between align-items-center my-2">
@@ -66,11 +65,11 @@ const AddItem = ({ onAdd }) => {
 
       <button
         type="button"
-        value="Save"
+        value="save"
         onClick={onSubmit}
         className="px-5 my-3 btn btn-danger"
       >
-        Save
+        Sačuvaj
       </button>
     </form>
   );
