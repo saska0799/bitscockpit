@@ -22,8 +22,8 @@ code {
   width: 70vw;
 }
 
-h1 {
-  font-size: 5rem;
+.form-container {
+  width: 400px;
 }
 
 a {
@@ -34,3 +34,9 @@ a {
 a:hover {
   color: grey;
 }
+
+@media screen and (max-width: 450px) {
+  .form-container {
+    width: 280px;
+  }
+} ;

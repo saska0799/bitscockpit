@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FiDelete } from "react-icons/fi";
 import { GrUpdate } from "react-icons/gr";
+import BitsContext from "../context/BitsContext";
 
-const TableRow = ({ el, onDelete, onUpdate }) => {
+const TableRow = ({ el }) => {
+  const { updateItem, deleteItem } = useContext(BitsContext);
   return (
-    <tr key={el.id}>
+    <tr key={el}>
       <td>{el.oznakaPS}</td>
       <td>{el.nazivNV}</td>
       <td>{el.region}</td>
@@ -13,7 +15,7 @@ const TableRow = ({ el, onDelete, onUpdate }) => {
         <FiDelete
           type="submit"
           onClick={() => {
-            onDelete(el);
+            deleteItem(el);
           }}
         />
       </td>
@@ -21,7 +23,7 @@ const TableRow = ({ el, onDelete, onUpdate }) => {
         <GrUpdate
           type="submit"
           onClick={(e) => {
-            onUpdate(e, el);
+            updateItem(e, el);
           }}
         />
       </td>

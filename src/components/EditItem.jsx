@@ -1,15 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { MdSaveAlt } from "react-icons/md";
 import { MdOutlineCancel } from "react-icons/md";
+import BitsContext from "../context/BitsContext";
 
-const EditItem = ({
-  editItemData,
-  editFormChange,
-  editFormSubmit,
-  onCancelClick,
-}) => {
+const EditItem = ({ el }) => {
+  const { editItemData, editFormChange, editFormSubmit, cancelClick } =
+    useContext(BitsContext);
   return (
-    <tr>
+    <tr key={el}>
       <td>
         <input
           className="form-control"
@@ -52,7 +50,7 @@ const EditItem = ({
         <MdSaveAlt type="submit" onClick={editFormSubmit} />
       </td>
       <td>
-        <MdOutlineCancel type="submit" onClick={onCancelClick} />
+        <MdOutlineCancel type="submit" onClick={cancelClick} />
       </td>
     </tr>
   );

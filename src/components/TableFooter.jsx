@@ -1,6 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
+import BitsContext from "../context/BitsContext";
 
-const TableFooter = ({ range, setPage, page, slice }) => {
+const TableFooter = ({}) => {
+  const { range, setPage, page, slice } = useContext(BitsContext);
+
   useEffect(() => {
     if (slice.length < 1 && page !== 1) {
       setPage(page - 1);
